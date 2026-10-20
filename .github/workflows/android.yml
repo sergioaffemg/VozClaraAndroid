@@ -20,9 +20,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Aceitar licenças do Android SDK
-        run: yes | "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" --licenses
-        
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Aceitar licencas Android
+        run: yes | sdkmanager --licenses
+
       - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -36,3 +39,4 @@ jobs:
         with:
           name: VozClara-debug-apk
           path: app/build/outputs/apk/debug/*.apk
+
